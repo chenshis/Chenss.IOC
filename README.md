@@ -1,2 +1,2 @@
 # Chenss.IOC
-应用.net下的IOC
+应用.net下的IO
