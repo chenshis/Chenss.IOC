@@ -4,3 +4,7 @@
 
 *.suo
 /.vs
+/Chenss.IOCTest/obj
+/Chenss.IOCTest/bin/Debug/net5.0
+/Chenss.IOC/obj
+/Chenss.IOC/bin/Debug/netstandard2.0
