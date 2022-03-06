@@ -10,4 +10,7 @@ namespace Chenss.IOCTest
     {
 
     }
+
+    public interface IServiceB
+    { }
 }

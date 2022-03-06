@@ -3,6 +3,7 @@ using Chenss.IOC.IService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace Chenss.IOC.Service
@@ -12,8 +13,7 @@ namespace Chenss.IOC.Service
         public TService Resolve<TService>()
         {
             var context = typeof(TService).FullName.GetDataContext();
-            var obj = GetResolveObject(context);
-            return (TService)obj;
+            return (TService)context.ResolveBuilder();
         }
 
         private object GetResolveObject(DataContext context)
@@ -59,6 +59,5 @@ namespace Chenss.IOC.Service
             }
             return null;
         }
-
     }
 }

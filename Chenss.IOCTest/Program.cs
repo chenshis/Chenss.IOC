@@ -10,8 +10,11 @@ namespace Chenss.IOCTest
         {
             IRegistrationBuilder builder = new DefaultRegistrationBuilder();
             builder.RegisterTransient<IServiceA, ServiceA>();
+            builder.RegisterTransient<IServiceB, ServiceB>();
             IResolveBuilder resolve = new DefaultResolveBuilder();
             resolve.Resolve<IServiceA>();
+
+            //resolve.Resolve<IServiceA>();
             Console.WriteLine("Hello World!");
         }
     }
