@@ -1,2 +1,3 @@
 # Chenss.IOC
-应用.net下的IO
+.net应用下的控制反转组件
+
