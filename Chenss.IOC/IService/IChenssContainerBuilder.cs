@@ -4,13 +4,13 @@ using System.Text;
 
 namespace Chenss.IOC.IService
 {
-    public interface IRegistrationBuilder
+    /// <summary>
+    /// 容器（建议注册为单例）
+    /// </summary>
+    public interface IChenssContainerBuilder
     {
-        /// <summary>
-        /// 瞬时注册
-        /// </summary>
-        /// <typeparam name="TImplementation">实现类</typeparam>
-        void RegisterTransient<TImplementation>() where TImplementation : class;
+        #region 类型注册
+
         /// <summary>
         /// 瞬时注册
         /// </summary>
@@ -20,24 +20,22 @@ namespace Chenss.IOC.IService
         /// <summary>
         /// 作用域
         /// </summary>
-        /// <typeparam name="TImplementation">实现类</typeparam>
-        void RegisterScoped<TImplementation>() where TImplementation : class;
-        /// <summary>
-        /// 作用域
-        /// </summary>
         /// <typeparam name="TService">抽象类</typeparam>
         /// <typeparam name="TImplementation">实现类</typeparam>
         void RegisterScoped<TService, TImplementation>() where TService : class where TImplementation : TService;
         /// <summary>
         /// 单例
         /// </summary>
-        /// <typeparam name="TImplementation">实现类</typeparam>
-        void RegisterSingleton<TImplementation>() where TImplementation : class;
-        /// <summary>
-        /// 单例
-        /// </summary>
         /// <typeparam name="TService">抽象类</typeparam>
         /// <typeparam name="TImplementation">实现类</typeparam>
         void RegisterSingleton<TService, TImplementation>() where TService : class where TImplementation : TService;
+
+        #endregion
+
+        #region 生成实例
+
+        TService Resolve<TService>(); 
+
+        #endregion
     }
 }

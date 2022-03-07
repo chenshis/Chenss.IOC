@@ -10,15 +10,29 @@ namespace Chenss.IOCTest
     {
         public ServiceA(IServiceB serviceB)
         {
-            //Console.WriteLine($"{nameof(ServiceA)}  {nameof(serviceB)}");
+            //Console.WriteLine($"{nameof(ServiceA)}");
         }
     }
 
     public class ServiceB : IServiceB
     {
-        public ServiceB()
+        public ServiceB(IServiceC serviceC, IServiceD serviceD)
         {
             //Console.WriteLine(nameof(ServiceB));
+        }
+    }
+    public class ServiceC : IServiceC
+    {
+        public ServiceC(IServiceD serviceD)
+        {
+            //Console.WriteLine(nameof(ServiceC));
+        }
+    }
+    public class ServiceD : IServiceD
+    {
+        public ServiceD()
+        {
+            //Console.WriteLine(nameof(ServiceD));
         }
     }
 }

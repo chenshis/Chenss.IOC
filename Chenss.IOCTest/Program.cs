@@ -8,13 +8,18 @@ namespace Chenss.IOCTest
     {
         static void Main(string[] args)
         {
-            IRegistrationBuilder builder = new DefaultRegistrationBuilder();
+            IChenssContainerBuilder builder = new DefaultContainerBuilder();
             builder.RegisterTransient<IServiceA, ServiceA>();
             builder.RegisterTransient<IServiceB, ServiceB>();
-            IResolveBuilder resolve = new DefaultResolveBuilder();
-            resolve.Resolve<IServiceA>();
+            builder.RegisterTransient<IServiceC, ServiceC>();
+            builder.RegisterTransient<IServiceD, ServiceD>();
 
-            //resolve.Resolve<IServiceA>();
+
+            var a = builder.Resolve<IServiceA>();
+            var a1 = builder.Resolve<IServiceA>();
+            var b = builder.Resolve<IServiceB>();
+            var c = builder.Resolve<IServiceC>();
+            var d = builder.Resolve<IServiceD>();
             Console.WriteLine("Hello World!");
         }
     }

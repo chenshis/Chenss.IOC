@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Chenss.IOC
 {
-    internal enum Lifetime
+    public enum TypeLifetime
     {
         /// <summary>
         /// 单例
