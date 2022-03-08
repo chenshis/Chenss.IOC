@@ -32,6 +32,12 @@ namespace Chenss.IOC.IService
 
         #endregion
 
+        #region 创建作用域
+
+        IChenssContainerBuilder CreateScope();
+
+        #endregion
+
         #region 生成实例
 
         TService Resolve<TService>(); 

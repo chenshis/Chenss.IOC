@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Chenss.IOC;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,9 @@ namespace Chenss.IOCTest
 {
     public class ServiceA : IServiceA
     {
+        [PropertyInjection]
+        public IServiceC serviceC { get; set; }
+
         public ServiceA(IServiceB serviceB)
         {
             //Console.WriteLine($"{nameof(ServiceA)}");
