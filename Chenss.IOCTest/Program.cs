@@ -9,8 +9,8 @@ namespace Chenss.IOCTest
         static void Main(string[] args)
         {
             IChenssContainerBuilder builder = new DefaultContainerBuilder();
-            builder.RegisterSingleton<IServiceA, ServiceA>();
-            builder.RegisterScoped<IServiceB, ServiceB>();
+            builder.RegisterTransient<IServiceA, ServiceA>();
+            builder.RegisterTransient<IServiceB, ServiceB>();
             builder.RegisterTransient<IServiceC, ServiceC>();
             builder.RegisterTransient<IServiceD, ServiceD>();
 
@@ -19,6 +19,10 @@ namespace Chenss.IOCTest
 
             var a = builder.Resolve<IServiceA>();
             var a1 = builder.Resolve<IServiceA>();
+            var b = builder.Resolve<IServiceB>();
+            var c = builder.Resolve<IServiceC>();
+            var d = builder.Resolve<IServiceD>();
+
 
             var container = builder.CreateScope();
             var a2 = container.Resolve<IServiceA>();
