@@ -4,6 +4,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Text;
 
 namespace Chenss.IOC
@@ -28,11 +29,7 @@ namespace Chenss.IOC
 
         private static Expression GetExpression(ServiceDescriptorContext context)
         {
-            var ctor = context
-                .ImplementationType
-                .GetConstructors()
-                .OrderByDescending(x => x.GetParameters().Length)
-                .First();
+            var ctor = GetConstructor(context);
             var parametersInfo = ctor.GetParameters();
             var argumentsExpression = new Expression[parametersInfo.Length];
             for (int i = 0; i < parametersInfo.Length; i++)
@@ -46,6 +43,21 @@ namespace Chenss.IOC
             }
             var newExpression = Expression.New(ctor, argumentsExpression);
             return newExpression;
+        }
+
+        private static ConstructorInfo GetConstructor(ServiceDescriptorContext context)
+        {
+            var ctors = context.ImplementationType.GetConstructors();
+            var ctor = ctors
+                .Where(c => c.IsDefined(typeof(ConstructorInjectionAttribute), true))
+                .OrderByDescending(c => c.GetParameters().Length)
+                .FirstOrDefault();
+            if (ctor == null)
+            {
+                ctor = ctors.OrderByDescending(x => x.GetParameters().Length).First();
+            }
+
+            return ctor;
         }
     }
 }
