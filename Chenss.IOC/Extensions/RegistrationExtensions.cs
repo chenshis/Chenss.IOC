@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Chenss.IOC.Extensions
@@ -24,14 +25,40 @@ namespace Chenss.IOC.Extensions
                 });
         }
 
-        public static ServiceDescriptorContext GetDataContext(this object key)
+        public static ServiceDescriptorContext GetDataContext(this Type serviceType)
         {
+            ServiceDescriptorContext serviceDescriptor;
+            if (serviceType == null)
+            {
+                throw new ArgumentException(nameof(serviceType));
+            }
+            var serviceKey = serviceType.FullName;
+            if (serviceType.IsGenericType)
+            {
+                ServiceDescriptorCollection.TryGetValue(serviceKey, out serviceDescriptor);
+                if (serviceDescriptor == null)
+                {
+                    serviceKey = serviceType.Namespace + "." + serviceType.Name;
+                    ServiceDescriptorCollection.TryGetValue(serviceKey, out serviceDescriptor);
+                    if (serviceDescriptor != null)
+                    {
+                        serviceDescriptor.ServiceType = serviceType;
+                        serviceDescriptor.ImplementationType =
+                            serviceDescriptor.ImplementationType.MakeGenericType(serviceType.GenericTypeArguments);
+                        ServiceDescriptorCollection.TryAdd(serviceType.FullName, serviceDescriptor);
+                    }
+                    else
+                    {
+                        throw new ArgumentException(nameof(serviceDescriptor));
+                    }
+                }
+            }
             if (ServiceDescriptorCollection.Count <= 0)
             {
                 throw new Exception("DataContextCollection集合无数据");
             }
-            ServiceDescriptorCollection.TryGetValue(key, out var dataContext);
-            return dataContext;
+            ServiceDescriptorCollection.TryGetValue(serviceKey, out serviceDescriptor);
+            return serviceDescriptor;
         }
     }
 }

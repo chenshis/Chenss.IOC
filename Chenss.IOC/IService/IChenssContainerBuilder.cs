@@ -18,6 +18,12 @@ namespace Chenss.IOC.IService
         /// <typeparam name="TImplementation">实现类</typeparam>
         void RegisterTransient<TService, TImplementation>() where TService : class where TImplementation : TService;
         /// <summary>
+        /// 瞬时注册
+        /// </summary>
+        /// <typeparam name="serviceType">抽象类</typeparam>
+        /// <typeparam name="serviceImplementation">实现类</typeparam>
+        void RegisterTransient(Type serviceType, Type serviceImplementation);
+        /// <summary>
         /// 作用域
         /// </summary>
         /// <typeparam name="TService">抽象类</typeparam>

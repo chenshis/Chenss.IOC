@@ -38,7 +38,7 @@ namespace Chenss.IOC
             IEnumerable<PropertyInfo> properties = GetPropertiesByContext(context);
             foreach (var property in properties)
             {
-                var propContext = property.PropertyType.FullName.GetDataContext();
+                var propContext = property.PropertyType.GetDataContext();
                 var propExpression = Expression.Property(variableExpression, property);
                 var propNewExpression = GetExpressionByContext(propContext);
                 var propAssignExpression = Expression.Assign(propExpression, propNewExpression);
@@ -62,7 +62,7 @@ namespace Chenss.IOC
             for (int i = 0; i < parametersInfo.Length; i++)
             {
                 var parameterType = parametersInfo[i].ParameterType;
-                var dataContext = parameterType.FullName.GetDataContext();
+                var dataContext = parameterType.GetDataContext();
                 if (dataContext != null)
                 {
                     argumentsExpression[i] = GetExpressionByContext(dataContext);

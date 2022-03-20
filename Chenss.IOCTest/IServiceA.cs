@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Chenss.IOCTest
 {
-    public interface IServiceA { }
+    public interface IServiceA<T> { }
     public interface IServiceB { }
     public interface IServiceC { }
     public interface IServiceD { }

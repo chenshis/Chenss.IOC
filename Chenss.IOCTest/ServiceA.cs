@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace Chenss.IOCTest
 {
-    public class ServiceA : IServiceA
+    public class ServiceA<T> : IServiceA<T>
     {
         [PropertyInjection]
         public IServiceC serviceC { get; set; }
 
         public ServiceA(IServiceB serviceB)
         {
-            //Console.WriteLine($"{nameof(ServiceA)}");
+            Console.WriteLine($"{nameof(ServiceA<T>)}");
         }
     }
 

@@ -15,7 +15,12 @@ namespace Chenss.IOC.Service
            where TService : class
            where TImplementation : TService
         {
-            TypeLifetime.Transient.AddRegisterType(typeof(TImplementation), typeof(TService));
+            RegisterTransient(typeof(TService), typeof(TImplementation));
+        }
+
+        public void RegisterTransient(System.Type serviceType, System.Type serviceImplementation)
+        {
+            TypeLifetime.Transient.AddRegisterType(serviceImplementation, serviceType);
         }
 
         public void RegisterScoped<TService, TImplementation>()
@@ -42,7 +47,7 @@ namespace Chenss.IOC.Service
 
         public TService Resolve<TService>()
         {
-            var context = typeof(TService).FullName.GetDataContext();
+            var context = typeof(TService).GetDataContext();
             if (ValidateImplInstance<TService>(context))
             {
                 return (TService)context.ImplementationInstance;

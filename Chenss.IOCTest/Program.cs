@@ -9,7 +9,7 @@ namespace Chenss.IOCTest
         static void Main(string[] args)
         {
             IChenssContainerBuilder builder = new DefaultContainerBuilder();
-            builder.RegisterTransient<IServiceA, ServiceA>();
+            builder.RegisterTransient(typeof(IServiceA<>), typeof(ServiceA<>));
             builder.RegisterTransient<IServiceB, ServiceB>();
             builder.RegisterTransient<IServiceC, ServiceC>();
             builder.RegisterTransient<IServiceD, ServiceD>();
@@ -17,18 +17,18 @@ namespace Chenss.IOCTest
 
 
 
-            var a = builder.Resolve<IServiceA>();
-            var a1 = builder.Resolve<IServiceA>();
+            var a = builder.Resolve<IServiceA<object>>();
+            var a1 = builder.Resolve<IServiceA<object>>();
             var b = builder.Resolve<IServiceB>();
             var c = builder.Resolve<IServiceC>();
             var d = builder.Resolve<IServiceD>();
 
 
             var container = builder.CreateScope();
-            var a2 = container.Resolve<IServiceA>();
+            //var a2 = container.Resolve<IServiceA>();
 
-            Console.WriteLine(Object.ReferenceEquals(a, a1));
-            Console.WriteLine(Object.ReferenceEquals(a, a2));
+            //Console.WriteLine(Object.ReferenceEquals(a, a1));
+            //Console.WriteLine(Object.ReferenceEquals(a, a2));
             //var b = builder.Resolve<IServiceB>();
             //var c = builder.Resolve<IServiceC>();
             //var d = builder.Resolve<IServiceD>();
