@@ -30,11 +30,23 @@ namespace Chenss.IOC.IService
         /// <typeparam name="TImplementation">实现类</typeparam>
         void RegisterScoped<TService, TImplementation>() where TService : class where TImplementation : TService;
         /// <summary>
+        /// 作用域
+        /// </summary>
+        /// <typeparam name="serviceType">抽象类</typeparam>
+        /// <typeparam name="serviceImplementation">实现类</typeparam>
+        void RegisterScoped(Type serviceType, Type serviceImplementation);
+        /// <summary>
         /// 单例
         /// </summary>
         /// <typeparam name="TService">抽象类</typeparam>
         /// <typeparam name="TImplementation">实现类</typeparam>
         void RegisterSingleton<TService, TImplementation>() where TService : class where TImplementation : TService;
+        /// <summary>
+        /// 单例
+        /// </summary>
+        /// <typeparam name="serviceType">抽象类</typeparam>
+        /// <typeparam name="serviceImplementation">实现类</typeparam>
+        void RegisterSingleton(Type serviceType, Type serviceImplementation);
 
         #endregion
 

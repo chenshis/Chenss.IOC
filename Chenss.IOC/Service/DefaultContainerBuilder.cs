@@ -20,23 +20,32 @@ namespace Chenss.IOC.Service
 
         public void RegisterTransient(System.Type serviceType, System.Type serviceImplementation)
         {
-            TypeLifetime.Transient.AddRegisterType(serviceImplementation, serviceType);
+            TypeLifetime.Transient.AddRegisterType(serviceType, serviceImplementation);
         }
 
         public void RegisterScoped<TService, TImplementation>()
             where TService : class
             where TImplementation : TService
         {
-            TypeLifetime.Scoped.AddRegisterType(typeof(TImplementation), typeof(TService));
+            RegisterScoped(typeof(TService), typeof(TImplementation));
+        }
+
+        public void RegisterScoped(System.Type serviceType, System.Type serviceImplementation)
+        {
+            TypeLifetime.Scoped.AddRegisterType(serviceType, serviceImplementation);
         }
 
         public void RegisterSingleton<TService, TImplementation>()
             where TService : class
             where TImplementation : TService
         {
-            TypeLifetime.Singleton.AddRegisterType(typeof(TImplementation), typeof(TService));
+            RegisterSingleton(typeof(TService), typeof(TImplementation));
         }
 
+        public void RegisterSingleton(System.Type serviceType, System.Type serviceImplementation)
+        {
+            TypeLifetime.Singleton.AddRegisterType(serviceType, serviceImplementation);
+        }
 
         public IChenssContainerBuilder CreateScope()
         {
@@ -92,7 +101,6 @@ namespace Chenss.IOC.Service
                 ServiceScopeCollection.GetOrAdd(typeof(TService).FullName, context);
             }
         }
-
         #endregion
     }
 }

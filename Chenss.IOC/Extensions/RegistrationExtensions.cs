@@ -13,7 +13,7 @@ namespace Chenss.IOC.Extensions
         /// </summary>
         private static readonly ConcurrentDictionary<object, ServiceDescriptorContext> ServiceDescriptorCollection = new ConcurrentDictionary<object, ServiceDescriptorContext>();
 
-        public static void AddRegisterType(this TypeLifetime lifetime, Type implementationType, Type serviceType)
+        public static void AddRegisterType(this TypeLifetime lifetime, Type serviceType, Type implementationType)
         {
             ServiceDescriptorCollection.TryAdd(
                 serviceType.FullName,
