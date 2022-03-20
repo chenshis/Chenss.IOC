@@ -66,7 +66,7 @@ namespace Chenss.IOC.Service
             }
             if (context.ImplementationFactory != null)
             {
-                context.ImplementationFactory(Resolve<System.IServiceProvider>());
+                return context.ImplementationFactory(Resolve<System.IServiceProvider>());
             }
             var constructorBinder = new ContextBinder(context);
             var implementationInstance = constructorBinder.Resolve();

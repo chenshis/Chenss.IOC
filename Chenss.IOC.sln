@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chenss.IOCTest", "Chenss.IO
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chenss.Extensions.DependencyInjection", "Chenss.Extensions.DependencyInjection\Chenss.Extensions.DependencyInjection.csproj", "{B505239D-D419-40E5-939D-A27A8693458F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebTest", "WebTest\WebTest.csproj", "{C07987FB-4AAB-43A6-A8E3-419B06E573A4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{B505239D-D419-40E5-939D-A27A8693458F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B505239D-D419-40E5-939D-A27A8693458F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B505239D-D419-40E5-939D-A27A8693458F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C07987FB-4AAB-43A6-A8E3-419B06E573A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C07987FB-4AAB-43A6-A8E3-419B06E573A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C07987FB-4AAB-43A6-A8E3-419B06E573A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C07987FB-4AAB-43A6-A8E3-419B06E573A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

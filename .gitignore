@@ -11,3 +11,5 @@
 /Chenss.IOC/bin/Debug/netstandard2.1
 /Chenss.Extensions.DependencyInjection/obj
 /Chenss.Extensions.DependencyInjection/bin/Debug/net6.0
+/WebTest/obj
+/WebTest/bin/Debug/net6.0
