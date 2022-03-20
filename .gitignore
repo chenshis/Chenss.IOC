@@ -9,3 +9,5 @@
 /Chenss.IOC/obj
 /Chenss.IOC/bin/Debug/netstandard2.0
 /Chenss.IOC/bin/Debug/netstandard2.1
+/Chenss.Extensions.DependencyInjection/obj
+/Chenss.Extensions.DependencyInjection/bin/Debug/net6.0

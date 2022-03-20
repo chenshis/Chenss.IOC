@@ -24,6 +24,14 @@ namespace Chenss.IOC
         /// </summary>
         public object ImplementationInstance { get; set; }
 
+        /// <summary>
+        /// 实例工厂
+        /// </summary>
+        public Func<IServiceProvider, object> ImplementationFactory
+        {
+            get; set;
+        }
+
         public override string ToString()
         {
             var lifetime = $"{nameof(ServiceType)}: {ServiceType} {nameof(Lifetime)}: {Lifetime} ";

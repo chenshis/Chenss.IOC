@@ -58,7 +58,8 @@ namespace Chenss.IOC.IService
 
         #region 生成实例
 
-        TService Resolve<TService>(); 
+        TService Resolve<TService>();
+        object Resolve(Type serviceType);
 
         #endregion
     }

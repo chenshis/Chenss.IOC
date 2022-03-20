@@ -5,7 +5,9 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chenss.IOC", "Chenss.IOC\Chenss.IOC.csproj", "{8A97F183-9A14-46F7-B737-4FE2ED7044A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chenss.IOCTest", "Chenss.IOCTest\Chenss.IOCTest.csproj", "{7BA06374-07B3-410B-9AF9-B8827CC47A1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chenss.IOCTest", "Chenss.IOCTest\Chenss.IOCTest.csproj", "{7BA06374-07B3-410B-9AF9-B8827CC47A1A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chenss.Extensions.DependencyInjection", "Chenss.Extensions.DependencyInjection\Chenss.Extensions.DependencyInjection.csproj", "{B505239D-D419-40E5-939D-A27A8693458F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{7BA06374-07B3-410B-9AF9-B8827CC47A1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7BA06374-07B3-410B-9AF9-B8827CC47A1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7BA06374-07B3-410B-9AF9-B8827CC47A1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B505239D-D419-40E5-939D-A27A8693458F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B505239D-D419-40E5-939D-A27A8693458F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B505239D-D419-40E5-939D-A27A8693458F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B505239D-D419-40E5-939D-A27A8693458F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -60,5 +60,17 @@ namespace Chenss.IOC.Extensions
             ServiceDescriptorCollection.TryGetValue(serviceKey, out serviceDescriptor);
             return serviceDescriptor;
         }
+
+        public static void ForDelegate(this TypeLifetime lifetime, Type serviceType, Func<IServiceProvider, object> func)
+        {
+            ServiceDescriptorCollection.TryAdd(
+              serviceType.FullName,
+              new ServiceDescriptorContext
+              {
+                  ServiceType = serviceType,
+                  Lifetime = lifetime,
+                  ImplementationFactory = func
+              });
+        }
     }
 }

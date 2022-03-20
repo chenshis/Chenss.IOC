@@ -1,5 +1,6 @@
 ﻿using Chenss.IOC.Extensions;
 using Chenss.IOC.IService;
+using System;
 using System.Collections.Concurrent;
 
 namespace Chenss.IOC.Service
@@ -54,22 +55,28 @@ namespace Chenss.IOC.Service
             return this;
         }
 
-        public TService Resolve<TService>()
+        public TService Resolve<TService>() => (TService)Resolve(typeof(TService));
+
+        public object Resolve(Type serviceType)
         {
-            var context = typeof(TService).GetDataContext();
-            if (ValidateImplInstance<TService>(context))
+            var context = serviceType.GetDataContext();
+            if (ValidateImplInstance(context))
             {
-                return (TService)context.ImplementationInstance;
+                return context.ImplementationInstance;
+            }
+            if (context.ImplementationFactory != null)
+            {
+                context.ImplementationFactory(Resolve<System.IServiceProvider>());
             }
             var constructorBinder = new ContextBinder(context);
             var implementationInstance = constructorBinder.Resolve();
-            SetImplInstance<TService>(context, implementationInstance);
-            return (TService)implementationInstance;
+            SetImplInstance(context, implementationInstance);
+            return implementationInstance;
         }
 
         #region 私有方法
 
-        private bool ValidateImplInstance<TService>(ServiceDescriptorContext context)
+        private bool ValidateImplInstance(ServiceDescriptorContext context)
         {
             if (context.Lifetime == TypeLifetime.Singleton && context.ImplementationInstance != null)
             {
@@ -77,7 +84,7 @@ namespace Chenss.IOC.Service
             }
             if (context.Lifetime == TypeLifetime.Scoped)
             {
-                if (ServiceScopeCollection.TryGetValue(typeof(TService).FullName, out var scope))
+                if (ServiceScopeCollection.TryGetValue(context.ServiceType.FullName, out var scope))
                 {
                     if (scope.ImplementationInstance != null)
                     {
@@ -89,7 +96,7 @@ namespace Chenss.IOC.Service
             return false;
         }
 
-        private void SetImplInstance<TService>(ServiceDescriptorContext context, object implementationInstance)
+        private void SetImplInstance(ServiceDescriptorContext context, object implementationInstance)
         {
             if (context.Lifetime == TypeLifetime.Singleton)
             {
@@ -98,7 +105,7 @@ namespace Chenss.IOC.Service
             else if (context.Lifetime == TypeLifetime.Scoped)
             {
                 context.ImplementationInstance = implementationInstance;
-                ServiceScopeCollection.GetOrAdd(typeof(TService).FullName, context);
+                ServiceScopeCollection.GetOrAdd(context.ServiceType.FullName, context);
             }
         }
         #endregion
